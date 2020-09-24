@@ -4,7 +4,9 @@ public class Application {
 
     public static void main(String[] args){
 
-         new GameWindow();
+         Game game = new Game();
+         game.start();
+
 
 
 

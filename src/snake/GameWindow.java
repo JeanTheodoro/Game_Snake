@@ -6,12 +6,18 @@ import java.awt.*;
 public class GameWindow extends JFrame {
 
     private Rect background;
-    private Rect rect;
+    private Snake snake;
+    private Renderer renderer;
 
-    public GameWindow(){
+    public GameWindow() {
 
-        background = new Rect(0, 0, Constants.WINDOW_WITH, Constants.WINDOW_HEIGHT, Constants.BACKGROUND);
-        rect = new Rect(150,150, 200, 200, Color.GREEN);
+        renderer = new Renderer();
+
+        Background background = new Background();
+        renderer.add(background);
+
+        snake = new Snake();
+        renderer.add(snake);
 
         setSize(Constants.WINDOW_WITH, Constants.WINDOW_HEIGHT);
         setResizable(false);
@@ -22,9 +28,12 @@ public class GameWindow extends JFrame {
 
     }
 
+    public Renderer getRenderer(){
+        return renderer;
+    }
+
     @Override
     public void paint(Graphics g) {
-       background.paint(g);
-       rect.paint(g);
+        renderer.render(g);
     }
 }
